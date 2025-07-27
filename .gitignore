@@ -1,0 +1,5 @@
+# 忽略target目录及其所有内容
+target/
+.idea/
+GodzillaCache/
+Godzilla4.iml
