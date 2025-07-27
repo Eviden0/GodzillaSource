@@ -40,44 +40,6 @@ public class ApplicationConfig {
 
          String showGroupTitle;
          String tipString;
-         try {
-            HashMap<String, String> md5SumMap = getAppConfig(String.format(ACCESS_URL, "hashsumJar"));
-            String hashString = (String)md5SumMap.get("4.01");
-            File jarFile = functions.getCurrentJarFile();
-            showGroupTitle = new String();
-            if (jarFile != null) {
-               FileInputStream inputStream = new FileInputStream(jarFile);
-               byte[] jar = functions.readInputStream(inputStream);
-               inputStream.close();
-               showGroupTitle = functions.SHA(jar, "SHA-512");
-            }
-
-            if (hashString != null) {
-               if (jarFile != null) {
-                  if (!showGroupTitle.equals(hashString)) {
-                     tipString = EasyI18N.getI18nString("你使用的软件可能已被病毒感染   文件哈希效验失败\r\n效验Jar哈希:%s\r\n本地Jar哈希:%s", hashString, showGroupTitle);
-                     GOptionPane.showMessageDialog((Component)null, tipString, EasyI18N.getI18nString("警告\t当前版本:", "4.01"), 2);
-                     Log.error(String.format(tipString, hashString, showGroupTitle));
-                     System.exit(0);
-                  } else {
-                     Log.error(EasyI18N.getI18nString("效验Hash成功   Hash Url:%s\r\n效验Jar哈希:%s\r\n本地Jar哈希:%s", String.format(ACCESS_URL, "hashsumJar"), hashString, showGroupTitle));
-                  }
-               } else {
-                  tipString = EasyI18N.getI18nString("未找到Jar位置\r\n你使用的软件可能已被病毒感染   文件哈希效验失败");
-                  GOptionPane.showMessageDialog((Component)null, tipString, EasyI18N.getI18nString("警告\t当前版本:%s", "4.01", hashString), 2);
-                  Log.error(tipString);
-                  System.exit(0);
-               }
-            } else {
-               tipString = EasyI18N.getI18nString("未找到当前版本(%s)的Hash\r\n当前Hash:%s\r\n你使用的软件可能已被病毒感染   文件哈希效验失败", "4.01", showGroupTitle);
-               JOptionPane.showMessageDialog((Component)null, tipString, EasyI18N.getI18nString("警告\t当前版本:%s", "4.01"), 2);
-               Log.error(String.format(tipString, "4.01"));
-               System.exit(0);
-            }
-         } catch (Exception var10) {
-            Log.error((Throwable)var10);
-         }
-
          if (configMap != null && configMap.size() > 0) {
             String version = (String)configMap.get("currentVersion");
             boolean isShowGroup = Boolean.valueOf((String)configMap.get("isShowGroup"));

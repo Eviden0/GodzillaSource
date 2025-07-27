@@ -59,6 +59,8 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+<!--                    包含lib-->
+
                 </configuration>
                 <executions>
                     <execution>
@@ -201,31 +203,53 @@
             <artifactId>languagesupport</artifactId>
             <version>3.0.0</version>
         </dependency>
-        <!-- Thanks for using https://jar-download.com -->
-<!--       加载lib下的jar包依赖, 便于打包使用-->
+
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-intellij-themes</artifactId>
+            <version>1.4</version> <!-- 注意版本必须和 flatlaf-demo 匹配 -->
+        </dependency>
+
         <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf-demo</artifactId>
             <version>1.4</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/flatlaf-demo-1.4.jar</systemPath>
         </dependency>
+                <dependency>
+                    <groupId>com.jediterm</groupId>
+                    <artifactId>jediterm-pty</artifactId>
+                    <version>2.42</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.fife.ui</groupId>
+                    <artifactId>rsyntaxtextarea</artifactId>
+                    <version>2.0.4.1</version>
+                    </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+<!--       加载lib下的jar包依赖, 便于打包使用-->
+<!--        <dependency>-->
+<!--            <groupId>com.formdev</groupId>-->
+<!--            <artifactId>flatlaf-demo</artifactId>-->
+<!--            <version>1.4</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${project.basedir}/lib/flatlaf-demo-1.4.jar</systemPath>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.jediterm</groupId>
-            <artifactId>jediterm-pty</artifactId>
-            <version>2.42</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jediterm-pty-2.42.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.jediterm</groupId>-->
+<!--            <artifactId>jediterm-pty</artifactId>-->
+<!--            <version>2.42</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${project.basedir}/lib/jediterm-pty-2.42.jar</systemPath>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.fife.ui</groupId>
-            <artifactId>rsyntaxtextarea</artifactId>
-            <version>2.0.4.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/rsyntaxtextarea-2.0.4.1.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.fife.ui</groupId>-->
+<!--            <artifactId>rsyntaxtextarea</artifactId>-->
+<!--            <version>2.0.4.1</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${project.basedir}/lib/rsyntaxtextarea-2.0.4.1.jar</systemPath>-->
+<!--        </dependency>-->
     </dependencies>
 
 
