@@ -47,6 +47,8 @@ public class DynamicUpdateClass extends JPanel {
 
       try {
          InputStream fileInputStream = DynamicUpdateClass.class.getResourceAsStream("assets/classNames.txt");
+         // InputStream fileInputStream = DynamicUpdateClass.class.getResourceAsStream("src/main/java/shells/payloads/java/assets/classNames.txt");
+
          data = functions.readInputStream(fileInputStream);
          fileInputStream.close();
       } catch (Exception var3) {

@@ -387,6 +387,9 @@ public class JavaShell implements Payload {
 
       try {
          InputStream fileInputStream = JavaShell.class.getResourceAsStream("assets/payload.classs");
+         // 路径好像指向不对啊
+         // InputStream fileInputStream = JavaShell.class.getResourceAsStream("src/main/java/shells/payloads/java/assets/payload.classs");
+
          data = functions.readInputStream(fileInputStream);
          fileInputStream.close();
       } catch (Exception var4) {
