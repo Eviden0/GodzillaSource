@@ -15,7 +15,7 @@ class Generate {
       byte[] data = null;
 
       try {
-         InputStream inputStream = Generate.class.getResourceAsStream("./template/" + shellName + (isBin ? "raw" : "base64") + "GlobalCode.bin");
+         InputStream inputStream = Generate.class.getResourceAsStream("/shells/cryptions/JavaAes/template/" + shellName + (isBin ? "raw" : "base64") + "GlobalCode.bin");
          String globalCode = new String(functions.readInputStream(inputStream));
          inputStream.close();
          globalCode = globalCode.replace("{pass}", pass).replace("{secretKey}", secretKey);

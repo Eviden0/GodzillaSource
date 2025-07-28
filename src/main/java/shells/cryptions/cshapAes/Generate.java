@@ -14,7 +14,7 @@ class Generate {
       byte[] data = null;
 
       try {
-         InputStream inputStream = Generate.class.getResourceAsStream("/template/" + shellName + (isBin ? "raw.bin" : "base64.bin"));
+         InputStream inputStream = Generate.class.getResourceAsStream("/shells/cryptions/cshapAes/template/" + shellName + (isBin ? "raw.bin" : "base64.bin"));
          String code = new String(functions.readInputStream(inputStream));
          inputStream.close();
          code = code.replace("{pass}", pass).replace("{secretKey}", secretKey);

@@ -13,7 +13,7 @@ class Generate {
       String findStrRight = findStrMd5.substring(20, 26);
 
       try {
-         InputStream inputStream = Generate.class.getResourceAsStream("template/" + className + ".bin");
+         InputStream inputStream = Generate.class.getResourceAsStream("/shells/cryptions/aspXor/template/" + className + ".bin");
          String code = new String(functions.readInputStream(inputStream));
          inputStream.close();
          code = code.replace("{pass}", pass).replace("{secretKey}", secretKey).replace("{findStrLeft}", findStrLeft).replace("{findStrRight}", findStrRight);
