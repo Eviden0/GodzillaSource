@@ -29,14 +29,9 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Vector;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
+import javax.swing.*;
+import java.awt.Color;
+import java.awt.Image;
 import util.Log;
 import util.automaticBindClick;
 import util.functions;
@@ -71,7 +66,10 @@ public class MainActivity extends JFrame {
    }
 
    private void initVariable() {
-      this.setTitle(EasyI18N.getI18nString("哥斯拉   V%s by: BeichenDream Github:https://github.com/BeichenDream/Godzilla", "4.01"));
+      // 读取 resources 目录下的 logo.png
+      ImageIcon icon = new ImageIcon(getClass().getResource("/images/logo.png"));
+      this.setIconImage(icon.getImage());
+      this.setTitle(EasyI18N.getI18nString("[\uD83D\uDC80哥斯拉-魔改专版\uD83D\uDC80] [V%s] By: [Eviden] Github:https://github.com/Eviden0/GodzillaSource", "0.01"));
       this.setLayout(new BorderLayout(2, 2));
       this.currentGroup = "/";
       this.statusLabel = new JLabel("status");
@@ -135,16 +133,27 @@ public class MainActivity extends JFrame {
       editShell.setActionCommand("editShell");
       JMenuItem refreshShell = new JMenuItem("刷新");
       refreshShell.setActionCommand("refreshShellView");
+      //
+      ImageIcon rawIcon = new ImageIcon(getClass().getResource("/images/logo.png"));
+      Image img = rawIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+      JMenuItem item = new JMenuItem("自定义项", new ImageIcon(img));
+      item.addActionListener((e) -> {
+         JOptionPane.showMessageDialog(null, "你点击了自定义项！");
+      });
+      item.setBackground(Color.YELLOW);
+      item.setForeground(Color.RED);
+      shellViewPopupMenu.add(item);
       shellViewPopupMenu.add(interactMenuItem);
       shellViewPopupMenu.add(interactCacheMenuItem);
       shellViewPopupMenu.add(copyselectItem);
       shellViewPopupMenu.add(removeShell);
       shellViewPopupMenu.add(editShell);
       shellViewPopupMenu.add(refreshShell);
+
       this.shellView.setRightClickMenu(shellViewPopupMenu);
       automaticBindClick.bindMenuItemClick(shellViewPopupMenu, (Map)null, this);
       this.addEasterEgg();
-      functions.setWindowSize(this, 1500, 600);
+      functions.setWindowSize(this, 1360, 780);
       this.setLocationRelativeTo((Component)null);
       this.setVisible(true);
       this.setDefaultCloseOperation(3);
@@ -186,7 +195,7 @@ public class MainActivity extends JFrame {
    }
 
    private void aboutMenuItemClick(ActionEvent e) {
-      GOptionPane.showMessageDialog(getFrame(), EasyI18N.getI18nString("由BeichenDream强力驱动\nMail:beichendream@gmail.com"), "About", -1);
+      GOptionPane.showMessageDialog(getFrame(), EasyI18N.getI18nString("当前版本由Eviden强力驱动\n"), "About", -1);
    }
 
    private void copyShellViewSelectedMenuItemClick(ActionEvent e) {

