@@ -61,7 +61,7 @@ public class ShellEntity {
       this.readTimeout = 60000;
       this.proxyType = "";
       this.proxyHost = "";
-      this.proxyPort = 8888;
+      this.proxyPort = 8000;
       this.id = "";
       this.useCache = useCache;
    }
@@ -94,6 +94,7 @@ public class ShellEntity {
             this.cryptionModel.init(this);
             if (this.cryptionModel.check()) {
                this.payloadModel.init(this);
+               //初始化连接测试
                if (this.payloadModel.test()) {
                   state = true;
                } else {
@@ -144,7 +145,7 @@ public class ShellEntity {
    public String getSecretKey() {
       return this.secretKey;
    }
-
+   //getSecretKeyX 返回MD5加密的密钥的前16位
    public String getSecretKeyX() {
       return functions.md5(this.getSecretKey()).substring(0, 16);
    }

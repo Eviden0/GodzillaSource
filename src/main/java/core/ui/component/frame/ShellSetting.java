@@ -336,6 +336,7 @@ public class ShellSetting extends JFrame {
             GOptionPane.showMessageDialog(this, "Success!", "提示", 1);
             Log.log(String.format("CloseShellState: %s\tShellId: %s\tShellHash: %s", this.shellContext.getPayloadModule().close(), this.shellContext.getId(), this.shellContext.hashCode()));
          } else {
+            //TODO 增加错误信息显示,比如想冰蝎那样回显数据包
             GOptionPane.showMessageDialog(this, "initShellOpertion Fail", "提示", 2);
          }
       } else {

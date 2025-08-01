@@ -11,8 +11,8 @@ import util.functions;
 import util.http.Http;
 
 @CryptionAnnotation(
-   Name = "JAVA_AES_BASE64",
-   payloadName = "JavaDynamicPayload"
+        Name = "JAVA_AES_BASE64",
+        payloadName = "JavaDynamicPayload"
 )
 public class JavaAesBase64 implements Cryption {
    private ShellEntity shell;

